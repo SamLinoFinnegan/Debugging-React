@@ -9,9 +9,11 @@ import ResetGameButton from "../ResetGameButton/ResetGameButton";
 import GuessesLeft from "../GuessesLeft/GuessesLeft";
 import WronglyGuessedLetters from "../WronglyGuessedLetters/WronglyGuessedLetters";
 
+
 const wordGuessed = (word, guessedLetters) => {
   word = word.split("");
   const remaining = word.filter(letter => !guessedLetters.includes(letter));
+  console.log(word)
   return remaining.length === 0;
 };
 
@@ -24,11 +26,12 @@ const isGameOver = (game, wrongLetters, wordWasGuessed) =>
 const App = props => {
   const game = props.game;
   const wordWasGuessed = wordGuessed(game.chosenWord, game.guessedLetters);
+  console.log(wordWasGuessed)
   const wrongLetters = getWrongLetters(game.chosenWord, game.guessedLetters);
   const gameIsOver = isGameOver(game, wrongLetters, wordWasGuessed);
 
   const gameOver = gameIsOver ? (
-    <GameOver chosenWord={game.chosenWord} wordGuesed={wordWasGuessed} />
+    <GameOver chosenWord={game.chosenWord} wordGuessed={wordWasGuessed} />
   ) : null;
 
   return (
